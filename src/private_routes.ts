@@ -19,6 +19,7 @@ import * as actions from './actions';
 const router = Router();
 
 router.get('/user', safe(actions.getUsers));
-router.get('/familytree', safe(actions.findTrees));
+router.get('/All', safe(actions.findTrees));
 router.get('/createtree', safe(actions.createTree));
+router.get('/member/:id', safe(actions.getMemberId));
 export default router;
