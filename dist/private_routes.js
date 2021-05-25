@@ -37,4 +37,5 @@ var actions = __importStar(require("./actions"));
 // declare a new router to include all the endpoints
 var router = express_1.Router();
 router.get('/user', utils_1.safe(actions.getUsers));
+router.get('/familytree', utils_1.safe(actions.findTrees));
 exports["default"] = router;

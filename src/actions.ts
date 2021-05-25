@@ -1,6 +1,7 @@
 import { Request, Response } from 'express'
-import { getRepository } from 'typeorm'  // getRepository"  traer una tabla de la base de datos asociada al objeto
+import { getRepository, getManager } from 'typeorm'  // getRepository"  traer una tabla de la base de datos asociada al objeto
 import { Users } from './entities/Users'
+import { Family } from './entities/Family'
 import { Exception } from './utils'
 
 export const createUser = async (req: Request, res:Response): Promise<Response> =>{
@@ -24,4 +25,10 @@ export const createUser = async (req: Request, res:Response): Promise<Response> 
 export const getUsers = async (req: Request, res: Response): Promise<Response> =>{
 		const users = await getRepository(Users).find();
 		return res.json(users);
+}
+
+export const findTrees  = async (req: Request, res:Response): Promise<Response> =>{
+    const manager = getManager();
+    const trees = await manager.getTreeRepository(Family).findTrees();
+    return res.json(trees);
 }

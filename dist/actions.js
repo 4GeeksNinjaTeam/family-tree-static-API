@@ -36,9 +36,10 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.getUsers = exports.createUser = void 0;
+exports.findTrees = exports.getUsers = exports.createUser = void 0;
 var typeorm_1 = require("typeorm"); // getRepository"  traer una tabla de la base de datos asociada al objeto
 var Users_1 = require("./entities/Users");
+var Family_1 = require("./entities/Family");
 var utils_1 = require("./utils");
 var createUser = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
     var userRepo, user, newUser, results;
@@ -81,3 +82,17 @@ var getUsers = function (req, res) { return __awaiter(void 0, void 0, void 0, fu
     });
 }); };
 exports.getUsers = getUsers;
+var findTrees = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var manager, trees;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                manager = typeorm_1.getManager();
+                return [4 /*yield*/, manager.getTreeRepository(Family_1.Family).findTrees()];
+            case 1:
+                trees = _a.sent();
+                return [2 /*return*/, res.json(trees)];
+        }
+    });
+}); };
+exports.findTrees = findTrees;
