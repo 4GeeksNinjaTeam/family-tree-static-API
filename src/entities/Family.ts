@@ -2,7 +2,7 @@ import {Entity, Tree, Column, PrimaryGeneratedColumn, TreeChildren, TreeParent, 
 
 @Entity()
 @Tree("closure-table")
-export class Category {
+export class Family {
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -11,8 +11,8 @@ export class Category {
     name: string;
 
     @TreeChildren()
-    children: Category[];
+    children: Family[];
 
     @TreeParent()
-    parent: Category;
+    parent: Family;
 }
