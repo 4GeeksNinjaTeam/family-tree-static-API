@@ -140,15 +140,15 @@ var createTree = function (req, res) { return __awaiter(void 0, void 0, void 0, 
 }); };
 exports.createTree = createTree;
 var getMemberId = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
-    var manager, trees;
+    var manager, member;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
                 manager = typeorm_1.getManager();
-                return [4 /*yield*/, manager.getTreeRepository(Family_1.Family).findTrees()];
+                return [4 /*yield*/, manager.findOne(Family_1.Family, req.params.id)];
             case 1:
-                trees = _a.sent();
-                return [2 /*return*/, res.json(trees)];
+                member = _a.sent();
+                return [2 /*return*/, res.json(member)];
         }
     });
 }); };

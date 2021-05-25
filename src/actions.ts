@@ -69,6 +69,8 @@ export const getMemberId = async (req: Request, res: Response): Promise<Response
 
     const manager = getManager();
 
-    const trees = await manager.getTreeRepository(Family).findTrees();
-    return res.json(trees);
+    const member = await manager.findOne(Family, req.params.id);
+
+    
+    return res.json(member);
 }
