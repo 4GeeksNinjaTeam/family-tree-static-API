@@ -36,7 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.findTrees = exports.getUsers = exports.createUser = void 0;
+exports.createTree = exports.findTrees = exports.getUsers = exports.createUser = void 0;
 var typeorm_1 = require("typeorm"); // getRepository"  traer una tabla de la base de datos asociada al objeto
 var Users_1 = require("./entities/Users");
 var Family_1 = require("./entities/Family");
@@ -96,3 +96,46 @@ var findTrees = function (req, res) { return __awaiter(void 0, void 0, void 0, f
     });
 }); };
 exports.findTrees = findTrees;
+var createTree = function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var manager, a1, a11, a12, a111, a112, trees;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                manager = typeorm_1.getManager();
+                a1 = new Family_1.Family();
+                a1.name = "GrandParent";
+                return [4 /*yield*/, manager.save(a1)];
+            case 1:
+                _a.sent();
+                a11 = new Family_1.Family();
+                a11.name = "Parent1";
+                a11.parent = a1;
+                return [4 /*yield*/, manager.save(a11)];
+            case 2:
+                _a.sent();
+                a12 = new Family_1.Family();
+                a12.name = "Parent2";
+                a12.parent = a1;
+                return [4 /*yield*/, manager.save(a12)];
+            case 3:
+                _a.sent();
+                a111 = new Family_1.Family();
+                a111.name = "Current1";
+                a111.parent = a11;
+                return [4 /*yield*/, manager.save(a111)];
+            case 4:
+                _a.sent();
+                a112 = new Family_1.Family();
+                a112.name = "Current2";
+                a112.parent = a11;
+                return [4 /*yield*/, manager.save(a112)];
+            case 5:
+                _a.sent();
+                return [4 /*yield*/, manager.getTreeRepository(Family_1.Family).findTrees()];
+            case 6:
+                trees = _a.sent();
+                return [2 /*return*/, res.json(trees)];
+        }
+    });
+}); };
+exports.createTree = createTree;

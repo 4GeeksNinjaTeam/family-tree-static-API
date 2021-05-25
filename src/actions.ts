@@ -32,3 +32,35 @@ export const findTrees  = async (req: Request, res:Response): Promise<Response> 
     const trees = await manager.getTreeRepository(Family).findTrees();
     return res.json(trees);
 }
+
+export const createTree = async (req: Request, res:Response): Promise<Response> =>{
+    
+const manager = getManager();
+    
+const a1 = new Family();
+a1.name = "GrandParent";
+await manager.save(a1);
+
+const a11 = new Family();
+a11.name = "Parent1";
+a11.parent = a1;
+await manager.save(a11);
+
+const a12 = new Family();
+a12.name = "Parent2";
+a12.parent = a1;
+await manager.save(a12);
+
+const a111 = new Family();
+a111.name = "Current1";
+a111.parent = a11;
+await manager.save(a111);
+
+const a112 = new Family();
+a112.name = "Current2";
+a112.parent = a11;
+await manager.save(a112);
+ 
+const trees = await manager.getTreeRepository(Family).findTrees();
+return res.json(trees);
+}

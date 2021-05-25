@@ -32,7 +32,11 @@ var Family = /** @class */ (function () {
     ], Family.prototype, "parent");
     Family = __decorate([
         typeorm_1.Entity(),
-        typeorm_1.Tree("closure-table")
+        typeorm_1.Tree("closure-table", {
+            closureTableName: "family_tree",
+            ancestorColumnName: function (column) { return "padre_" + column.propertyName; },
+            descendantColumnName: function (column) { return "hijo_" + column.propertyName; }
+        })
     ], Family);
     return Family;
 }());

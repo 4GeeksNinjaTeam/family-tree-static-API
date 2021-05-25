@@ -38,4 +38,5 @@ var actions = __importStar(require("./actions"));
 var router = express_1.Router();
 router.get('/user', utils_1.safe(actions.getUsers));
 router.get('/familytree', utils_1.safe(actions.findTrees));
+router.get('/createtree', utils_1.safe(actions.createTree));
 exports["default"] = router;

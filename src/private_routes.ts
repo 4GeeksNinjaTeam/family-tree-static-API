@@ -20,4 +20,5 @@ const router = Router();
 
 router.get('/user', safe(actions.getUsers));
 router.get('/familytree', safe(actions.findTrees));
+router.get('/createtree', safe(actions.createTree));
 export default router;
