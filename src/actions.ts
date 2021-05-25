@@ -70,7 +70,7 @@ export const getMemberId = async (req: Request, res: Response): Promise<Response
     const manager = getManager();
 
     const member = await manager.findOne(Family, req.params.id);
-
+    if (!member) throw new Exception("Member does not exist")
     
     return res.json(member);
 }

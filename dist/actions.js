@@ -148,6 +148,8 @@ var getMemberId = function (req, res) { return __awaiter(void 0, void 0, void 0,
                 return [4 /*yield*/, manager.findOne(Family_1.Family, req.params.id)];
             case 1:
                 member = _a.sent();
+                if (!member)
+                    throw new utils_1.Exception("Member does not exist");
                 return [2 /*return*/, res.json(member)];
         }
     });
